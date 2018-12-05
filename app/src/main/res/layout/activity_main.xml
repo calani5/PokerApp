@@ -6,21 +6,103 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
+        android:layout_width="700dp"
+        android:layout_height="700dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background"
+        tools:foreground="@android:color/transparent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:text="BLACKJACK"
+        android:textColor="@android:color/black"
+        android:textSize="40sp"
+        app:fontFamily="@font/goblin_one"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.121" />
+
+    <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/backing"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="71dp" />
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="300dp"
+        android:text="PLAY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioGroup
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:checkedButton="@+id/radioButton"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        tools:background="@drawable/background2">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@android:color/transparent"
+            android:buttonTint="@color/switch_thumb_material_light"
+            android:foreground="@android:color/transparent"
+            android:foregroundTint="@android:color/transparent"
+            android:text="1 CPU"
+            android:textColor="@android:color/background_light"
+            android:textSize="25sp"
+            android:visibility="visible" />
+
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@android:color/transparent"
+            android:buttonTint="@color/switch_thumb_material_light"
+            android:foreground="@android:color/transparent"
+            android:foregroundTint="@android:color/transparent"
+            android:text="2 CPUS"
+            android:textColor="@android:color/background_light"
+            android:textSize="25sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@android:color/transparent"
+            android:buttonTint="@color/switch_thumb_material_light"
+            android:foreground="@android:color/transparent"
+            android:foregroundTint="@android:color/transparent"
+            android:text="3 CPUS"
+            android:textColor="@android:color/background_light"
+            android:textSize="25sp" />
+
+    </RadioGroup>
 
 </android.support.constraint.ConstraintLayout>

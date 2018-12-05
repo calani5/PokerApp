@@ -56,21 +56,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        tools:background="@drawable/background2">
+        app:layout_constraintTop_toBottomOf="@+id/button">
 
         <RadioButton
             android:id="@+id/radioButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="42dp"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
             android:backgroundTint="@android:color/transparent"
-            android:buttonTint="@color/switch_thumb_material_light"
+            android:buttonTint="@android:color/black"
             android:foreground="@android:color/transparent"
             android:foregroundTint="@android:color/transparent"
             android:text="1 CPU"
-            android:textColor="@android:color/background_light"
             android:textSize="25sp"
             android:visibility="visible" />
 
@@ -78,29 +75,25 @@
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="42dp"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
             android:backgroundTint="@android:color/transparent"
-            android:buttonTint="@color/switch_thumb_material_light"
+            android:buttonTint="@android:color/black"
             android:foreground="@android:color/transparent"
             android:foregroundTint="@android:color/transparent"
             android:text="2 CPUS"
-            android:textColor="@android:color/background_light"
             android:textSize="25sp" />
 
         <RadioButton
             android:id="@+id/radioButton3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="42dp"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
             android:backgroundTint="@android:color/transparent"
-            android:buttonTint="@color/switch_thumb_material_light"
+            android:buttonTint="@android:color/black"
             android:foreground="@android:color/transparent"
             android:foregroundTint="@android:color/transparent"
             android:text="3 CPUS"
-            android:textColor="@android:color/background_light"
             android:textSize="25sp" />
 
     </RadioGroup>

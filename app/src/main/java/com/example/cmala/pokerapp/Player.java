@@ -8,8 +8,9 @@ public class Player {
     private ArrayList<Card> cards;
     private int score = 0;
     private int scoreWithAce = 0;
-    Player(ArrayList<Card> startingHand) {
-        cards.addAll(cards);
+    Player(Card card, Card card2) {
+        cards.add(card);
+        cards.add(card2);
     }
 
     public int getScore() {
@@ -40,7 +41,7 @@ public class Player {
             }
         }
         if (getScore() > 21 && (getScoreWithAce() == 0 || getScoreWithAce() > 21)) {
-            Game.gameOver(getCards(), Game.getNumberOfCpus());
+            //Game.gameOver(getCards(), Game.getNumberOfCpus());
         }
 
 

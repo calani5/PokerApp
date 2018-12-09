@@ -27,9 +27,13 @@ public class Game extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         startAPICall();
 
+        if (deck.getDeck().size() < 52) {
+            System.out.print("Waiting...");
+        }
+
         Intent intent = getIntent();
         numberOfCpus = intent.getIntExtra("numberCpus", 1);
-        Player player = new Player();
+        Player player = new Player(deck.draw(), deck.draw());
         if (numberOfCpus == 1) {
             setContentView(R.layout.one_cpugame_screen);
             CPU bot1 = new CPU();

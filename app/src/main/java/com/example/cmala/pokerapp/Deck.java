@@ -24,6 +24,13 @@ public class Deck {
     private ArrayList<Card> deck;
 
     public Deck() {
+        deck = new ArrayList<>();
+    }
+
+    public Card draw() {
+        Card toR = deck.get(0);
+        deck.remove(0);
+        return toR;
     }
 
     public void createDeck(final JSONObject response) {
@@ -46,5 +53,9 @@ public class Deck {
 
     public String getDeckID() {
         return deckID;
+    }
+
+    public ArrayList<Card> getDeck() {
+        return deck;
     }
 }

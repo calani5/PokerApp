@@ -106,4 +106,8 @@ public class Game extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    public int getNumberOfCpus() {
+        return numberOfCpus;
+    }
 }

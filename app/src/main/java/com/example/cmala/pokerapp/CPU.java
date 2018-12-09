@@ -22,19 +22,24 @@ public class CPU extends Player {
         }
 
         if ((getScore() > 21 && (getScoreWithAce() == 0 || getScoreWithAce() > 21)) && shouldDraw)  {
+            /*if (Game.getNumberOfCpus() == 1) {
+                gameOver
+            } */
             shouldDraw = false;
         }
         if ((getScore() == 21 || getScoreWithAce() == 21) && shouldDraw) {
+            /*if (Game.getNumberOfCpus() == 1) {
+                gameOver
+            } */
             shouldDraw = false;
         }
 
         if ((getScore() < 17  && (getScoreWithAce() == 0 || getScoreWithAce() > 21)) && shouldDraw) {
-            getCards().add(Game.deck.draw());
+            //getCards().add(Game.deck.draw());
         }
         if ((getScoreWithAce() > 17 || getScore() > 17) && shouldDraw) {
             shouldDraw = false;
         }
 
-//temporary
     }
 }

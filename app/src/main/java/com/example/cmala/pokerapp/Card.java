@@ -4,24 +4,29 @@ import java.net.URL;
 
 public class Card {
     private int value;
+    private int valueTwoIfAce;
     private URL img;
     private String suit;
     private String code;
 
-    Card(String cSuit, int val, URL url, String cCode) {
+    Card(String cSuit, String tovalue) {
         suit = cSuit;
-        value = val;
-        img = url;
-        code = cCode;
+        if (tovalue.equalsIgnoreCase("ACE")) {
+            value = 1;
+            valueTwoIfAce = 11;
+        } else if (tovalue.equalsIgnoreCase("KING") || tovalue.equalsIgnoreCase("QUEEN") || tovalue.equalsIgnoreCase("JACK")) {
+            value = 10;
+        } else {
+            value = Integer.parseInt(tovalue);
+        }
+
     }
 
     Card() {}
 
-    public String getSuit() {
-        return suit;
+    public int getValue (){
+        return value;
     }
-    public int getValue(){ return value; }
-    public URL getImg(){ return img; }
-    public String getCode() {return code; }
+
 
 }

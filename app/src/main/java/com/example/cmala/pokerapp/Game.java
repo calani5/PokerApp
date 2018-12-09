@@ -10,6 +10,9 @@ public class Game  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Deck deck = new Deck();
+        System.out.println(deck.toString());
+
         Intent intent = getIntent();
         numberOfCpus = intent.getIntExtra("numberCpus", 1);
         if (numberOfCpus == 1) {

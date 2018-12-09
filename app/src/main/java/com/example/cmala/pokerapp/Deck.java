@@ -1,6 +1,7 @@
 package com.example.cmala.pokerapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import com.android.volley.Request;
@@ -14,89 +15,35 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 
 
-public class Deck extends Activity {
-    private static final String TAG = "Deck";
-    private static RequestQueue requestQueue;
-    private String ID;
+public class Deck {
+    private String deckID;
     private Card newC;
+    private ArrayList<Card> deck;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestQueue = Volley.newRequestQueue(this);
-        startAPICall();
+    public Deck() {
     }
 
-    public String getID() {
-        return ID;
-    }
-
-    public Card getCard() {
-        drawCard(this.getID());
-        return newC;
-    }
-
-    void drawCard(String dID) {
-        try {
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                    Request.Method.GET,
-                    "https://deckofcardsapi.com/api/deck/" + dID + "/draw/?count=1",
-                    null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(final JSONObject response) {
-                            Log.d(TAG, response.toString());
-                            newC = createCard(response);
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(final VolleyError error) {
-                    Log.w(TAG, error.toString());
-                }
-            });
-            requestQueue.add(jsonObjectRequest);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    public Card createCard(final JSONObject response) {
+    public void createDeck(final JSONObject response) {
         try {
             JSONArray cards = response.getJSONArray("cards");
-            String suit = cards.getJSONObject(0).get("suit").toString();
-            Card newCard = new Card(suit);
-            return newCard;
-        } catch (JSONException ignored) { return new Card(); }
-    }
+            for (int i = 0; i < cards.length(); i++) {
+                String suit = cards.getJSONObject(i).getString("suit");
+                String code = cards.getJSONObject(i).getString("code");
 
-    void startAPICall() {
-        try {
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                    Request.Method.GET,
-                    "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1",
-                    null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(final JSONObject response) {
-                            Log.d(TAG, response.toString());
-                            apiCallDone(response);
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(final VolleyError error) {
-                    Log.w(TAG, error.toString());
-                }
-            });
-            requestQueue.add(jsonObjectRequest);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-    void apiCallDone(final JSONObject response) {
-        try {
-            ID = response.get("deck_id").toString();
+                Card newCard = new Card(suit);
+                deck.add(newCard);
+            }
         } catch (JSONException ignored) { }
+    }
+
+    public void setDeckID(String dID) {
+        deckID = dID;
+    }
+
+    public String getDeckID() {
+        return deckID;
     }
 }

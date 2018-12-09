@@ -20,6 +20,7 @@ public class Deck extends Activity {
     private static final String TAG = "Deck";
     private static RequestQueue requestQueue;
     private String ID;
+    private Card newC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,12 @@ public class Deck extends Activity {
         return ID;
     }
 
-    public Card drawCard(String dID) {
+    public Card getCard() {
+        drawCard(this.getID());
+        return newC;
+    }
+
+    void drawCard(String dID) {
         try {
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                     Request.Method.GET,
@@ -40,9 +46,9 @@ public class Deck extends Activity {
                     null,
                     new Response.Listener<JSONObject>() {
                         @Override
-                        public Card onResponse(final JSONObject response) {
+                        public void onResponse(final JSONObject response) {
                             Log.d(TAG, response.toString());
-                            return createCard(response);
+                            newC = createCard(response);
                         }
                     }, new Response.ErrorListener() {
                 @Override

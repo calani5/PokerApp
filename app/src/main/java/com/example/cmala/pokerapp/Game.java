@@ -11,7 +11,7 @@ public class Game  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Deck deck = new Deck();
-        System.out.println(deck.toString());
+        System.out.println(deck.getID());
 
         Intent intent = getIntent();
         numberOfCpus = intent.getIntExtra("numberCpus", 1);

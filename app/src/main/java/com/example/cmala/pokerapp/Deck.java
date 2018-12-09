@@ -1,6 +1,5 @@
 package com.example.cmala.pokerapp;
 
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

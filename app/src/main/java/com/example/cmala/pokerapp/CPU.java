@@ -11,6 +11,30 @@ public class CPU extends Player {
     }
 
     public void cpuUpdate() {
+        boolean aceFlag = false;
+        boolean shouldDraw = true;
+        for (int i = 0; i < getCards().size(); i++) {
+            setScore(getCards().get(i).getValue());
+            if (getCards().get(i).getValue() == 1 && !aceFlag) {
+                setScoreWithAce(getScore() + 10);
+                aceFlag = true;
+            }
+        }
+
+        if ((getScore() > 21 && (getScoreWithAce() == 0 || getScoreWithAce() > 21)) && shouldDraw)  {
+            shouldDraw = false;
+        }
+        if ((getScore() == 21 || getScoreWithAce() == 21) && shouldDraw) {
+            shouldDraw = false;
+        }
+
+        if ((getScore() < 17  && (getScoreWithAce() == 0 || getScoreWithAce() > 21)) && shouldDraw) {
+            getCards().add(Game.deck.draw());
+        }
+        if ((getScoreWithAce() > 17 || getScore() > 17) && shouldDraw) {
+            shouldDraw = false;
+        }
+
 
     }
 }

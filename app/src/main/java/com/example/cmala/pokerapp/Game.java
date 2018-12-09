@@ -27,7 +27,7 @@ public class Game extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         startAPICall();
 
-        if (deck.getDeck().size() < 52) {
+        while (deck.getDeck().size() < 52) {
             System.out.print("Waiting...");
         }
 

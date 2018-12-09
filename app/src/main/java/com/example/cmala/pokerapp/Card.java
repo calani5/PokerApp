@@ -9,7 +9,7 @@ public class Card {
     private String suit;
     private String code;
 
-    Card(String cSuit, String tovalue) {
+    Card(String cSuit, String tovalue, String url, String code) {
         suit = cSuit;
         if (tovalue.equalsIgnoreCase("ACE")) {
             value = 1;

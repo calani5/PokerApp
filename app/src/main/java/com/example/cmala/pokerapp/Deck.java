@@ -32,8 +32,9 @@ public class Deck {
             for (int i = 0; i < cards.length(); i++) {
                 String suit = cards.getJSONObject(i).getString("suit");
                 String code = cards.getJSONObject(i).getString("code");
-
-                Card newCard = new Card(suit);
+                String value = cards.getJSONObject(i).getString("value");
+                String url = cards.getJSONObject(i).getString("image");
+                Card newCard = new Card(suit, value, url, code);
                 deck.add(newCard);
             }
         } catch (JSONException ignored) { }

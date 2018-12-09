@@ -1,18 +1,17 @@
 package com.example.cmala.pokerapp;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.util.Log;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
+import java.net.URL;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+public class Card {
+    private int value;
+    private URL img;
+    private String suit;
+    private String code;
 
-public class Card extends Activity {
+    Card(String cSuit) {
+        suit = cSuit;
+    }
+
+    Card() {}
 
 }

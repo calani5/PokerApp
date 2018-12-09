@@ -17,14 +17,21 @@ public class Game  extends AppCompatActivity {
 
         Intent intent = getIntent();
         numberOfCpus = intent.getIntExtra("numberCpus", 1);
+        Player player = new Player();
         if (numberOfCpus == 1) {
             setContentView(R.layout.one_cpugame_screen);
+            CPU bot1 = new CPU();
         } else if (numberOfCpus == 2) {
             setContentView(R.layout.two_cpugame_screen);
+            CPU bot1 = new CPU();
+            CPU bot2 = new CPU();
         } else {
             setContentView(R.layout.three_cpugame_screen);
+            CPU bot1 = new CPU();
+            CPU bot2 = new CPU();
+            CPU bot3 = new CPU();
         }
-        
+
     }
     public static int getNumberOfCpus() {
         return numberOfCpus;

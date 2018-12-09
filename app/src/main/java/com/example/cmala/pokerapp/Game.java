@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 public class Game  extends AppCompatActivity {
-    private int numberOfCpus = 1;
+    private static int numberOfCpus = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,5 +24,13 @@ public class Game  extends AppCompatActivity {
         } else {
             setContentView(R.layout.three_cpugame_screen);
         }
+        
     }
+    public static int getNumberOfCpus() {
+        return numberOfCpus;
+    }
+    public static void gameOver(ArrayList<Card> playerHand, int numberOfBots) {
+
+    }
+
 }

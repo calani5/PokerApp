@@ -36,16 +36,16 @@ public class Game extends AppCompatActivity {
         Player player = new Player(deck.draw(), deck.draw());
         if (numberOfCpus == 1) {
             setContentView(R.layout.one_cpugame_screen);
-            CPU bot1 = new CPU();
+            CPU bot1 = new CPU(deck.draw(), deck.draw());
         } else if (numberOfCpus == 2) {
             setContentView(R.layout.two_cpugame_screen);
-            CPU bot1 = new CPU();
-            CPU bot2 = new CPU();
+            CPU bot1 = new CPU(deck.draw(), deck.draw());
+            CPU bot2 = new CPU(deck.draw(), deck.draw());
         } else {
             setContentView(R.layout.three_cpugame_screen);
-            CPU bot1 = new CPU();
-            CPU bot2 = new CPU();
-            CPU bot3 = new CPU();
+            CPU bot1 = new CPU(deck.draw(), deck.draw());
+            CPU bot2 = new CPU(deck.draw(), deck.draw());
+            CPU bot3 = new CPU(deck.draw(), deck.draw());
         }
 
     }

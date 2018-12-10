@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -34,20 +36,68 @@ public class Game extends AppCompatActivity {
 
         Intent intent = getIntent();
         numberOfCpus = intent.getIntExtra("numberCpus", 1);
-        Player player = new Player(deck.draw(), deck.draw());
+        final Player player = new Player(deck.draw(), deck.draw());
+        final CPU bot1 = new CPU(deck.draw(), deck.draw());
+        final CPU bot2 = new CPU(deck.draw(), deck.draw());
+        final CPU bot3 = new CPU(deck.draw(), deck.draw());
         if (numberOfCpus == 1) {
             setContentView(R.layout.one_cpugame_screen);
-            CPU bot1 = new CPU(deck.draw(), deck.draw());
         } else if (numberOfCpus == 2) {
             setContentView(R.layout.two_cpugame_screen);
-            CPU bot1 = new CPU(deck.draw(), deck.draw());
-            CPU bot2 = new CPU(deck.draw(), deck.draw());
+
         } else {
             setContentView(R.layout.three_cpugame_screen);
-            CPU bot1 = new CPU(deck.draw(), deck.draw());
-            CPU bot2 = new CPU(deck.draw(), deck.draw());
-            CPU bot3 = new CPU(deck.draw(), deck.draw());
         }
+
+        final Button hit = findViewById(R.id.button2);
+        final Button stay = findViewById(R.id.button3);
+        hit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                player.addCard(deck.draw());
+                player.update();
+                if (bot1.cpuUpdate()) {
+                    bot1.cpuUpdate();
+                }
+                if (numberOfCpus == 2 && bot2.cpuUpdate()) {
+                    bot2.cpuUpdate();
+                }
+                if (numberOfCpus == 3) {
+                    if (bot2.cpuUpdate()) {
+                        bot2.cpuUpdate();
+                    }
+                    if (bot3.cpuUpdate()) {
+                        bot3.cpuUpdate();
+                    }
+                }
+            }
+        });
+        stay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (bot1.cpuUpdate()) {
+                    bot1.cpuUpdate();
+                } else {
+                    //gameover
+                }
+                if (numberOfCpus == 2 && bot2.cpuUpdate()) {
+                    bot2.cpuUpdate();
+                } else if (!bot1.cpuUpdate() && !bot2.cpuUpdate()) {
+                    //gameover
+                }
+                if (numberOfCpus == 3) {
+                    if (bot2.cpuUpdate()) {
+                        bot2.cpuUpdate();
+                    }
+                    if (bot3.cpuUpdate()) {
+                        bot3.cpuUpdate();
+                    } else if(!bot1.cpuUpdate() && !bot2.cpuUpdate() && !bot3.cpuUpdate()) {
+                        //gameover
+                    }
+                }
+
+            }
+        });
 
     }
 

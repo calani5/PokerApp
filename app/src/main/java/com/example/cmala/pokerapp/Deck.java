@@ -33,6 +33,7 @@ public class Deck {
                 Card newCard = new Card(suit, value, url, code);
                 deck.add(newCard);
             }
+            Game.setUp();
         } catch (JSONException ignored) { }
     }
 

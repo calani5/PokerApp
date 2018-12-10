@@ -20,6 +20,7 @@ public class Game extends AppCompatActivity {
     private static final String TAG = "Game";
     private static RequestQueue requestQueue;
     Deck deck = new Deck();
+    static boolean start;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +28,8 @@ public class Game extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         startAPICall();
 
-        while (deck.getDeck().size() < 52) {
-            System.out.print("Waiting...");
+        while (!start) {
+
         }
 
         Intent intent = getIntent();
@@ -48,6 +49,10 @@ public class Game extends AppCompatActivity {
             CPU bot3 = new CPU(deck.draw(), deck.draw());
         }
 
+    }
+
+    public static void setUp() {
+        start = true;
     }
 
     void startAPICall() {

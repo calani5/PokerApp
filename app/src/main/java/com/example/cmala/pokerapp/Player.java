@@ -45,6 +45,7 @@ public class Player {
         }
         if (getScore() > 21 && (getScoreWithAce() == 0 || getScoreWithAce() > 21)) {
             //Game.gameOver(getCards(), Game.getNumberOfCpus());
+            //
         }
         if (getScore() == 21 || getScoreWithAce() == 21) {
             //Game.gameOver(getCards(), Game.getNumberOfCpus());

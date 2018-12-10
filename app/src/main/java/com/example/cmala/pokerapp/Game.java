@@ -26,6 +26,7 @@ public class Game extends AppCompatActivity {
     private int numberOfCpus = 1;
     private static final String TAG = "Game";
     private static RequestQueue requestQueue;
+    JSONObject toCreate;
     Deck deck = new Deck();
     static boolean start;
 
@@ -34,6 +35,7 @@ public class Game extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestQueue = Volley.newRequestQueue(this);
         startAPICall();
+        deck.createDeck(toCreate);
 
         Intent intent = getIntent();
         numberOfCpus = intent.getIntExtra("numberCpus", 1);
@@ -108,7 +110,7 @@ public class Game extends AppCompatActivity {
 
     void startAPICall() {
         RequestFuture<JSONObject> future = RequestFuture.newFuture();
-        JsonObjectRequest request = new JsonObjectRequest("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1", new JSONObject(), future, future);
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,"https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1", new JSONObject(), future, future);
         requestQueue.add(request);
         try {
             JSONObject response = future.get(60, TimeUnit.SECONDS);
@@ -133,11 +135,11 @@ public class Game extends AppCompatActivity {
 
     void drawCards(String dID) {
         RequestFuture<JSONObject> future = RequestFuture.newFuture();
-        JsonObjectRequest request = new JsonObjectRequest("https://deckofcardsapi.com/api/deck/" + dID + "/draw/?count=52", new JSONObject(), future, future);
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,"https://deckofcardsapi.com/api/deck/" + dID + "/draw/?count=52", new JSONObject(), future, future);
         requestQueue.add(request);
         try {
             JSONObject response = future.get(60, TimeUnit.SECONDS);
-            deck.createDeck(response);// this will block
+            toCreate = response;// this will block
         } catch (InterruptedException e) {
             // exception handling
         } catch (ExecutionException e) {

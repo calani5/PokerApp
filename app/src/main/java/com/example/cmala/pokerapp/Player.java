@@ -21,7 +21,7 @@ public class Player {
         return cards;
     }
 
-    public int getScoreWithAce() {
+    public int getScoreWithAce() {//
         return scoreWithAce;
     }
 
@@ -31,6 +31,9 @@ public class Player {
 
     public void setScoreWithAce(int scoreWithAce) {
         this.scoreWithAce = scoreWithAce;
+    }
+    public void addCard(Card card) {
+        cards.add(card);
     }
 
     public void update() {

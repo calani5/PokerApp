@@ -10,7 +10,7 @@ public class CPU extends Player {
         super(cardOne, cardTwo);
     }
 
-    public void cpuUpdate() {
+    public boolean cpuUpdate() {
         boolean aceFlag = false;
         boolean shouldDraw = true;
         for (int i = 0; i < getCards().size(); i++) {
@@ -40,6 +40,6 @@ public class CPU extends Player {
         if ((getScoreWithAce() > 17 || getScore() > 17) && shouldDraw) {
             shouldDraw = false;
         }
-
+        return shouldDraw;
     }
 }

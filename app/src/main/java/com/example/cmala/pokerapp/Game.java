@@ -10,10 +10,15 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class Game extends AppCompatActivity {
     private int numberOfCpus = 1;
@@ -27,10 +32,6 @@ public class Game extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestQueue = Volley.newRequestQueue(this);
         startAPICall();
-
-        while (!start) {
-
-        }
 
         Intent intent = getIntent();
         numberOfCpus = intent.getIntExtra("numberCpus", 1);
@@ -56,26 +57,18 @@ public class Game extends AppCompatActivity {
     }
 
     void startAPICall() {
+        RequestFuture<JSONObject> future = RequestFuture.newFuture();
+        JsonObjectRequest request = new JsonObjectRequest("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1", new JSONObject(), future, future);
+        requestQueue.add(request);
         try {
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                    Request.Method.GET,
-                    "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1",
-                    null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(final JSONObject response) {
-                            Log.d(TAG, response.toString());
-                            apiCallDone(response);
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(final VolleyError error) {
-                    Log.w(TAG, error.toString());
-                }
-            });
-            requestQueue.add(jsonObjectRequest);
-        } catch (Exception e) {
-            e.printStackTrace();
+            JSONObject response = future.get(60, TimeUnit.SECONDS);
+            apiCallDone(response);// this will block
+        } catch (InterruptedException e) {
+            // exception handling
+        } catch (ExecutionException e) {
+            // exception handling
+        } catch (TimeoutException e) {
+            // exception handling
         }
     }
     void apiCallDone(final JSONObject response) {
@@ -89,26 +82,18 @@ public class Game extends AppCompatActivity {
     }
 
     void drawCards(String dID) {
+        RequestFuture<JSONObject> future = RequestFuture.newFuture();
+        JsonObjectRequest request = new JsonObjectRequest("https://deckofcardsapi.com/api/deck/" + dID + "/draw/?count=52", new JSONObject(), future, future);
+        requestQueue.add(request);
         try {
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                    Request.Method.GET,
-                    "https://deckofcardsapi.com/api/deck/" + dID + "/draw/?count=52",
-                    null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(final JSONObject response) {
-                            Log.d(TAG, response.toString());
-                            deck.createDeck(response);
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(final VolleyError error) {
-                    Log.w(TAG, error.toString());
-                }
-            });
-            requestQueue.add(jsonObjectRequest);
-        } catch (Exception e) {
-            e.printStackTrace();
+            JSONObject response = future.get(60, TimeUnit.SECONDS);
+            deck.createDeck(response);// this will block
+        } catch (InterruptedException e) {
+            // exception handling
+        } catch (ExecutionException e) {
+            // exception handling
+        } catch (TimeoutException e) {
+            // exception handling
         }
     }
 
